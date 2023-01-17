@@ -82,7 +82,7 @@ public class Pizza {
             System.out.println("Paperbag Added: 20");
         }
 
-        System.out.print("Total Price: ");
+        //System.out.print("Total Price: ");
         bill=String.valueOf(this.price);
         return "Total Price: "+this.bill;
     }
