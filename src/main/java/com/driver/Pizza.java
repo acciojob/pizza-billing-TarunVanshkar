@@ -9,6 +9,7 @@ public class Pizza {
     private boolean isExtraCheese;
     private boolean isExtraToppings;
     private boolean isPaperBag;
+    private boolean isBillGenerated;   // Generate bill only once
 
     private int basePrice;
     private int toppingsPrice;
@@ -69,28 +70,32 @@ public class Pizza {
     public String getBill()
     {
         // your code goes here
-        bill+="Base Price Of The Pizza: "+basePrice+"\n";       // "\n"--> to change to new line
-        if(isExtraCheese)
+        if(!isBillGenerated)
         {
-            bill+="Extra Cheese Added: 80"+"\n";
-        }
-        if(isExtraToppings)
-        {
-            if(isVeg)
+            bill+="Base Price Of The Pizza: "+basePrice+"\n";       // "\n"--> to change to new line
+            if(isExtraCheese)
             {
-                bill+="Extra Toppings Added: 70"+"\n";
+                bill+="Extra Cheese Added: 80"+"\n";
             }
-            else
+            if(isExtraToppings)
             {
-                bill+="Extra Toppings Added: 120"+"\n";
+                if(isVeg)
+                {
+                    bill+="Extra Toppings Added: 70"+"\n";
+                }
+                else
+                {
+                    bill+="Extra Toppings Added: 120"+"\n";
+                }
             }
-        }
-        if(isPaperBag)
-        {
-            bill+="Paperbag Added: 20"+"\n";
-        }
+            if(isPaperBag)
+            {
+                bill+="Paperbag Added: 20"+"\n";
+            }
 
-        bill+="Total Price: "+getPrice()+"\n";
+            bill+="Total Price: "+getPrice()+"\n";
+            isBillGenerated=true;
+        }
         return this.bill;
     }
 }
