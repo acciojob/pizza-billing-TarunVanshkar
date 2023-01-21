@@ -4,7 +4,7 @@ public class Pizza {
 
     private int price;
     private Boolean isVeg;
-    private String bill;
+    private String bill="";    // set as blank otherwise null will be printed
 
     private boolean isExtraCheese;
     private boolean isExtraToppings;
@@ -33,57 +33,64 @@ public class Pizza {
 
     public void addExtraCheese(){
         // your code goes here
-        isExtraCheese=true;
-        this.price=this.price+80;
+        if(!isExtraCheese)
+        {
+            this.price=getPrice()+80;
+            isExtraCheese=true;
+        }
     }
 
     public void addExtraToppings(){
         // your code goes here
-        isExtraToppings=true;
-        if(isVeg)
+        if(!isExtraToppings)
         {
-            this.price+=70;
-        }
-        else
-        {
-            this.price+=120;
+            if(isVeg)
+            {
+                this.price=getPrice()+70;
+            }
+            else
+            {
+                this.price=getPrice()+120;
+            }
+            isExtraToppings=true;
         }
     }
 
     public void addTakeaway()
     {
         // your code goes here
-        isPaperBag=true;
-        this.price+=20;
+        if(!isPaperBag)
+        {
+            this.price=getPrice()+20;
+            isPaperBag=true;
+        }
     }
 
     public String getBill()
     {
         // your code goes here
-        System.out.println("Base Price Of The Pizza: "+basePrice);
+        bill+="Base Price Of The Pizza: "+basePrice+"\n";       // "\n"--> to change to new line
         if(isExtraCheese)
         {
-            System.out.println("Extra Cheese Added: 80");
+            bill+="Extra Cheese Added: 80"+"\n";
         }
         if(isExtraToppings)
         {
-            System.out.print("Extra Toppings Added: ");
             if(isVeg)
             {
-                System.out.println("70");
+                bill+="Extra Toppings Added: 70"+"\n";
             }
-            else {
-                System.out.println("120");
+            else
+            {
+                bill+="Extra Toppings Added: 120"+"\n";
             }
         }
-
         if(isPaperBag)
         {
-            System.out.println("Paperbag Added: 20");
+            bill+="Paperbag Added: 20"+"\n";
         }
 
-        //System.out.print("Total Price: ");
-        bill=String.valueOf(this.price);
-        return "Total Price: "+this.bill;
+        bill+="Total Price: "+getPrice()+"\n";
+        return this.bill;
     }
 }

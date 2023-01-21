@@ -8,14 +8,4 @@ public class DeluxePizza extends Pizza {
         super.addExtraCheese();
         super.addExtraToppings();
     }
-
-    @Override
-    public void addExtraCheese() {
-        //super.addExtraCheese();
-    }
-
-    @Override
-    public void addExtraToppings() {
-        //super.addExtraToppings();
-    }
 }
